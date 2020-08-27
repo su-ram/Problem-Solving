@@ -1,6 +1,7 @@
 import sys
 from collections import deque
 print("I'm the  copy one.")
+print("I'm udated.!!")
 nodes,edges,root=map(int,sys.stdin.readline().split())
 
 g=[[]]
