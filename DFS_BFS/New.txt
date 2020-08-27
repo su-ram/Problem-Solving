@@ -1,2 +1,0 @@
-print("HEllo")
-print("콧물아 제발 멈춰줘...")
