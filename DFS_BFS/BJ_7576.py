@@ -1,5 +1,5 @@
 from collections import deque
-
+print("I'm changed!")
 m,n = map(int,input().split())
 tmt = [list(map(int,input().split())) for _ in range(n)]
 visited = [[0]*m for _ in range(n)]
