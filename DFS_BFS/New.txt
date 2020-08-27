@@ -1,3 +1,2 @@
 print("HEllo")
-for i in range(10):
-	print(i)
+print("콧물아 제발 멈춰줘...")
