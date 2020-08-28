@@ -11,11 +11,11 @@ cnt = 0
 
 def sol(root):
     global cnt
-    print("my level is %d" % cnt)
     cnt += 1
+    if root == 0 or root == 1:
+        cnt -= 1
+        return cnt
+    else:
+        return max(sol(root-1), sol(root-2))
 
-
-    if root == 0 or root == 1: return 1
-    else: return sol(root-1) + sol(root-2)
-
-sol(n)
+print(sol(n))
