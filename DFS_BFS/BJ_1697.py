@@ -18,4 +18,6 @@ def sol(root):
     else:
         return max(sol(root-1), sol(root-2))
 
+
+
 print(sol(n))
