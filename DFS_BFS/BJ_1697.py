@@ -13,6 +13,8 @@ def sol(root):
     global cnt
     print("my level is %d" % cnt)
     cnt += 1
+
+    
     if root == 0 or root == 1: return 1
     else: return sol(root-1) + sol(root-2)
 
