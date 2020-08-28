@@ -12,6 +12,8 @@ for i in range(n):
         if tomato[i][j] == 1: roots.append((i,j))
 
 def BFS_Search(roots):
+#roots에 저장되어 있는 노드의 상하좌우를 익은 토마토로 바꾸는 함수
+
 
     stack = roots
     nx = [0,0,-1,1]
@@ -33,12 +35,13 @@ def BFS_Search(roots):
                     new_roots.append((a,b))
 
     return new_roots
+def check():
+    #토마토들이 모두 익었는지 확인하는 함수
+    for _ in tomato:
+        if 0 in _ :
+            return False
 
-
-
-
-
-
+    return True
 
 
 days = 0
@@ -46,8 +49,12 @@ visited = [ [0]*m for _ in range(n)]
 
 for _ in range(n*m):
 
-    roots = BFS_Search(roots)
+    if not check():
+        roots = BFS_Search(roots)
+    else:
+        break
     days += 1
 
+if days == m*n : days = -1
 print(days)
 
