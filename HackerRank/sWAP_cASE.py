@@ -6,4 +6,5 @@ for i in string :
     else:
         answer += i.lower()
 print(answer)
+#스트링의 특정 문자열을 고칠 순 없다. Cannot assign!!
 
