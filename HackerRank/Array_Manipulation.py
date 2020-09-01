@@ -1,5 +1,4 @@
 import collections
-
 def arrayManipulation(n, q):
     array = [0] * (n + 1)
 
