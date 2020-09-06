@@ -1,23 +1,17 @@
 #백준 1697 숨바꼭질
-#이거 재귀로 풀어야 해!!!!
 from collections import deque
-
 #입력
 n, k = map(int, input().split())
-depth = 0
-limit = k - n
-limit = 2**limit*n
-cnt = 0
 
-def sol(root):
-    global cnt
-    cnt += 1
-    if root == 0 or root == 1:
-        cnt -= 1
-        return cnt
-    else:
-        return max(sol(root-1), sol(root-2))
+vector = [-1, 1, 0]
+que = deque([(n,0)])
 
-
-
-print(sol(n))
+while que:
+    node = que.popleft()
+    if node[0] == k : break
+    vector[-1] = node[0]
+    for i in range(3):
+        newnode = (node[0]+vector[i], node[1]+1)
+        if newnode[0] <=100000:
+            que.append(newnode)
+print(node[1])
