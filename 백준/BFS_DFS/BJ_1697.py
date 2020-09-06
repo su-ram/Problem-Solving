@@ -1,17 +1,24 @@
-#백준 1697 숨바꼭질
 from collections import deque
-#입력
+
 n, k = map(int, input().split())
 
-vector = [-1, 1, 0]
-que = deque([(n,0)])
+def bfs(n):
+    queue = deque()
+    queue.append((n, 0))
+    visited = [False] * 100010
 
-while que:
-    node = que.popleft()
-    if node[0] == k : break
-    vector[-1] = node[0]
-    for i in range(3):
-        newnode = (node[0]+vector[i], node[1]+1)
-        if newnode[0] <=100000:
-            que.append(newnode)
-print(node[1])
+    while queue:
+        cur_node, cur_time = queue.popleft()
+        for nxt in [cur_node + 1, cur_node - 1, cur_node * 2]:
+            if nxt < 0 or nxt > 100000:
+                continue
+            if nxt == k:
+                return cur_time + 1
+            elif not visited[nxt]:
+                visited[nxt] = True
+                queue.append((nxt, cur_time + 1))
+
+if n == k:
+    print(0)
+else:
+    print(bfs(n))
