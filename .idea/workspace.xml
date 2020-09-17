@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6bffe855-33a8-4095-9159-6cb725193401" name="Default Changelist" comment="재귀는 넘 어렵당..." />
+    <list default="true" id="6bffe855-33a8-4095-9159-6cb725193401" name="Default Changelist" comment="재귀는 넘 어렵당...">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -11,10 +13,13 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/백준/BFS_DFS/연결요소의_개수.py">
+        <entry file="file://$PROJECT_DIR$/백준/BFS_DFS/연구소.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="34" column="9" selection-end-line="41" />
+            <state relative-caret-position="-646">
+              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+              <folding>
+                <element signature="e#0#34#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -59,47 +64,24 @@
         <option value="$PROJECT_DIR$/SWEA/Baby_Gin.py" />
         <option value="$PROJECT_DIR$/백준/BFS_DFS/유기농_배추.py" />
         <option value="$PROJECT_DIR$/백준/BFS_DFS/연결요소의_개수.py" />
+        <option value="$PROJECT_DIR$/백준/BFS_DFS/연구소.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="-11" />
-    <option name="y" value="-11" />
-    <option name="width" value="1943" />
-    <option name="height" value="1103" />
+    <option name="x" value="553" />
+    <option name="y" value="48" />
+    <option name="width" value="1377" />
+    <option name="height" value="1104" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="코딩테스트" type="b2602c69:ProjectViewProjectNode" />
-              <item name="코딩테스트" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="코딩테스트" type="b2602c69:ProjectViewProjectNode" />
-              <item name="코딩테스트" type="462c0819:PsiDirectoryNode" />
-              <item name="백준" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="코딩테스트" type="b2602c69:ProjectViewProjectNode" />
-              <item name="코딩테스트" type="462c0819:PsiDirectoryNode" />
-              <item name="백준" type="462c0819:PsiDirectoryNode" />
-              <item name="BFS_DFS" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/백준/BFS_DFS/연결요소의_개수.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/백준/BFS_DFS/연구소.py" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
   </component>
   <component name="RecentsManager">
@@ -132,7 +114,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/백준/BFS_DFS/연결요소의_개수.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/백준/BFS_DFS/연구소.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -198,7 +180,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4995958" visible="true" weight="0.41860464" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4995958" visible="true" weight="0.35714287" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3986711" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -345,8 +327,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/백준/BFS_DFS/연결요소의_개수.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="34" column="9" selection-end-line="41" />
+        <state relative-caret-position="512">
+          <caret line="27" column="18" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/백준/BFS_DFS/연구소.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-646">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
