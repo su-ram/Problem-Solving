@@ -1,5 +1,5 @@
 import sys
-
+#DFS 백트래킹을 이용하는 문제. 공부 더 필요......ㅠ
 sys.stdin = open('input.txt', 'r')
 r, c = map(int, input().split())
 matrix = []
