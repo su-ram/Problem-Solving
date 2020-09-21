@@ -8,13 +8,16 @@ def promising(x, y):
         return True
     else:
         return False
-def DFS(start, cnt):
+def DFS(start):
     global maxcnt
-    if cnt == 26:
+    global cur
+    print(start, cur)
+    if cur == 26:
         maxcnt = 26
         return
     else:
-        maxcnt = max(cnt, maxcnt)
+
+        maxcnt = max(cur, maxcnt)
 
     x = start[0]
     y = start[1]
@@ -23,13 +26,17 @@ def DFS(start, cnt):
         yy = y + dy[i]
         if promising(xx, yy):
             pool[ord(matrix[xx][yy]) - 65] = 1
-            DFS((xx, yy), cnt+1)
+            cur += 1
+            DFS((xx, yy))
             pool[ord(matrix[xx][yy]) - 65] = 0
+
+    cur -= 1
 
 r, c = map(int, input().split())
 matrix = [list(map(str, input().strip())) for _ in range(r)]
 pool = [0] * 26
 pool[ord(matrix[0][0]) - 65] = 1
 maxcnt = 0
-DFS((0, 0),1)
+cur = 1
+DFS((0, 0))
 print(maxcnt)
