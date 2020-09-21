@@ -1,67 +1,35 @@
 import sys
-#DFS 백트래킹을 이용하는 문제. 공부 더 필요......ㅠ
 
-r, c = map(int, input().split())
-matrix = []
-pool = [0]*26
-
-cnt = 0
-maxcnt = 0
-for i in range(r):
-    temp = []
-    for j in input().rstrip():
-        temp.append(ord(j)-65)
-    matrix.append(temp)
-
-
-dx = [0,0,-1,1]
-dy = [1,-1,0,0]
-
-arr=[]
-def promising(x,y):
-    if pool[matrix[x][y]] == 1 : return False
-    else: return True
-
-def DFS(x,y):
-    #
-    arr.append((x,y))
-    print(arr)
-    global cnt
+# DFS 백트래킹을 이용하는 문제. 공부 더 필요......ㅠ
+dx = [0, 0, -1, 1]
+dy = [1, -1, 0, 0]
+def promising(x, y):
+    if 0 <= x < r and 0 <= y < c and pool[ord(matrix[x][y]) - 65] == 0:
+        return True
+    else:
+        return False
+def DFS(start, cnt):
     global maxcnt
-    cnt += 1
-    maxcnt = max(cnt, maxcnt)
-
-    value = matrix[x][y]
-    pool[value] = 1
-
-    candidate = []
-
-    for i in range(4):
-
-        xx = x + dx[i]
-        yy = y + dy[i]
-
-        if 0 <= xx < r and 0 <= yy < c and promising(xx,yy):
-            candidate.append((xx,yy))
-
-    if candidate == [] :
-        temp = arr.pop()
-        cnt -= 1
-        i = temp[0]
-        j = temp[1]
-        pool[matrix[i][j]] = 0
+    if cnt == 26:
+        maxcnt = 26
         return
     else:
-        for i in candidate:
-            DFS(i[0], i[1])
-    temp = arr.pop()
-    cnt -= 1
-    i = temp[0]
-    j = temp[1]
-    pool[matrix[i][j]] = 0
+        maxcnt = max(cnt, maxcnt)
 
-DFS(0,0)
+    x = start[0]
+    y = start[1]
+    for i in range(4):
+        xx = x + dx[i]
+        yy = y + dy[i]
+        if promising(xx, yy):
+            pool[ord(matrix[xx][yy]) - 65] = 1
+            DFS((xx, yy), cnt+1)
+            pool[ord(matrix[xx][yy]) - 65] = 0
 
-print(cnt,maxcnt)
-
-
+r, c = map(int, input().split())
+matrix = [list(map(str, input().strip())) for _ in range(r)]
+pool = [0] * 26
+pool[ord(matrix[0][0]) - 65] = 1
+maxcnt = 0
+DFS((0, 0),1)
+print(maxcnt)
