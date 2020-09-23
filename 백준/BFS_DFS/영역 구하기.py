@@ -1,7 +1,7 @@
 import sys
 
 
-sys.stdin = open('input.txt', 'r')
+sys.stdin = open('input.txt.txt', 'r')
 
 m, n, k = map(int, input().split())
 

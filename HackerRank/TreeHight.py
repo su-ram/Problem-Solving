@@ -36,7 +36,7 @@ class BinarySearchTree:
                     break
 
 
-# Enter your code here. Read input from STDIN. Print output to STDOUT
+# Enter your code here. Read input.txt from STDIN. Print output to STDOUT
 '''
 class Node:
       def __init__(self,info): 

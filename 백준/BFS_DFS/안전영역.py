@@ -1,7 +1,7 @@
 import sys
 import copy
 
-sys.stdin = open('./../../input.txt', 'r')
+sys.stdin = open('./../../input.txt.txt', 'r')
 
 n = int(input())
 
