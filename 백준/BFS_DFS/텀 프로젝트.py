@@ -1,50 +1,24 @@
 T = int(input())
-def DFS(node):
-    stack = [node]
-    visited = []
-    while stack :
-        member = stack.pop()
-        visited.append(member)
-        next = team[member]
-
-        if next not in visited :
-            stack.append(next)
-        else:
-            index = visited.index(next)
-            return visited, index
 
 for _ in range(T):
     n = int(input())
-    team = [0]
-    team.extend(list(map(int,input().split())))
+    team = [0]+(list(map(int,input().split())))
+    visit=[0]*(n+1)
 
-    org = [0]*(n+1)
-
-
+    group = 1
 
     for i in range(1,n+1):
+        if visit[i] == 0:
+            while visit[i] == 0 :
+                visit[i] = group
+                i = team[i]
+            while visit[i] == group:
+                visit[i] = -1
+                i = team[i]
+            group += 1
 
-        next = team[i]
-
-        if org[next] == 1 :
-            org[i]=1
-            continue
-        if org[i] == 2:
-            continue
-        arr, index = DFS(i)
-        #print(arr, index)
-        for j in arr[:index]:
-            org[j] = 1
-
-        circled = arr[index:]
-
-        for j in circled:
-            org[j] = 2
-
-
-    print(org.count(1))
-
-
-
-
-
+    cnt = 0
+    for j in visit:
+        if j >0 :
+            cnt +=1
+    print(cnt)
