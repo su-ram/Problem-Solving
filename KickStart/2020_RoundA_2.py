@@ -1,53 +1,25 @@
-from itertools import combinations_with_replacement
-from collections import deque
 
 T = int(input())
 
-def pickPlates(n, k, p,plates):
-    maximum = []
-    temp = combinations_with_replacement(range(k+1),n)
-    candi = []
 
-    for i in temp:
-        print(i)
-        if sum(i) == p:
-            candi.append(i)
-
-    total = []
-    for i in range(n):
-        temp = []
-        for j in range(k+1):
-            temp.append(sum(plates[i][:j]))
-        total.append(temp)
-
-
-    for i in candi:
-        pick = list(i)
-        que = deque(pick)
-
-        for j in range(n):
-
-            que.append(que.popleft())
-            hap = 0
-
-            for k in zip(que,total):
-
-                index = k[0]
-                arr = k[1]
-
-                hap += arr[index]
-                maximum.append(hap)
-
-    return maximum
-
-
-for _ in range(T):
+for t in range(T):
     n, k, p = map(int, input().split())
     plates = []
-
-    for i in range(n):
+    for _ in range(n):
         plates.append(list(map(int, input().split())))
 
-    result = pickPlates(n,k,p,plates)
+    for i in range(n):
+        for j in range(1,k):
+            plates[i][j] += plates[i][j-1]
+        plates[i].append(0)
 
-    print("Case #%d: %d"%(_+1,max(result)))
+
+    dp = [[0]*(p+1) for _ in range(n+1)]
+
+    for i in range(1,n+1):
+        for j in range(p+1):
+            for x in range(min(j,k)+1):
+                dp[i][j] = max(dp[i][j], plates[i-1][x-1] + dp[i - 1][j - x])
+
+
+    print("Case #%d: %d" %(t+1, dp[-1][-1]))
