@@ -2,75 +2,114 @@ import java.util.*;
 
 public class Main {
 
-    static int num;
-    static ArrayList<ArrayList<Integer>> adjList;
+    // 백준 7562. 나이트의 이동.
+
+    static int length;
+    static Position targetNode;
+    static int [][] visited;
+
+    static class Position{
+
+        int x;
+        int y;
+        int path;
+
+        Position(String[] node){
+            this.x = Integer.parseInt(node[0]);
+            this.y = Integer.parseInt(node[1]);
+            this.path = 0;
+        }
+
+        Position(int x, int y){
+            this.x = x;
+            this.y = y;
+            this.path = 0;
+
+        }
+    }
 
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
+        int num = scanner.nextInt();
 
-        //그래프를 인접리스트로 표현.
-
-        adjList = new ArrayList<>();
-        num = scanner.nextInt();
         scanner.nextLine();
-        ArrayList<Integer> ints;
-
-        for(int i=0; i<num; i++){
-
-            String[] input = scanner.nextLine().split(" ");
-            ints = new ArrayList<Integer>();
-
-            for(int j=0; j<num; j++){
-                int index = Integer.parseInt(input[j]);
-                if (index == 1){
-                    ints.add(j);
-                }
-            }
-
-            adjList.add(ints);
 
 
-        }
-        for(int i=0; i<num; i++){
-            int [] result = BFS(i);
-            for(int a : result){
-                System.out.print(a+" ");
-            }
-            System.out.println();
+
+        for(int i=0; i< num; i++){
+
+            length = scanner.nextInt();
+            visited = new int [length][length];
+            scanner.nextLine();
+
+
+
+            String[] start = scanner.nextLine().split(" ");
+            String[] target = scanner.nextLine().split(" ");
+
+            
+            Position startNode = new Position(start);
+            targetNode = new Position(target);
+
+            BFS(startNode);
+
+
+
+
+
         }
 
     }
 
-    public static int [] BFS(int node){
+    public static void BFS(Position start){
+        Queue<Position> queue = new LinkedList<Position>();
+        queue.offer(start);
+        int xx, yy;
+        Position curPos, nextPos;
 
-        Queue<Integer> queue = new LinkedList<Integer>();
-        int [] visited = new int[num];
+        int [] dx = {2,2,1,1};
+        int [] dy = {1,-1,2,-2};
 
-
-        ArrayList<Integer> neighbor = adjList.get(node);
-        int nextnode;
-
-        for(int i=0; i< neighbor.size(); i++){
-            queue.add(neighbor.get(i));
-        }
 
         while(!queue.isEmpty()){
 
+            curPos = queue.poll();
 
-            nextnode = queue.poll();
+
+            if (curPos.x == targetNode.x && curPos.y == targetNode.y){
+                System.out.println(curPos.path);
+                break;
+            }
+
+            if(visited[curPos.x][curPos.y] == 1){
+
+                continue;
+            }
+            visited[curPos.x][curPos.y] = 1;
+
+            for(int i=0; i<2; i++){
+                for(int j=0; j<4; j++){
+                     xx = curPos.x + dx[j];
+                     yy = curPos.y + dy[j];
 
 
-            visited[nextnode] = 1;
-            neighbor = adjList.get(nextnode);
+                     if(xx>=0 && xx < length && yy >= 0 && yy < length && visited[xx][yy] == 0){
+                         nextPos = new Position(xx,yy);
+                         nextPos.path = curPos.path+1;
+                         queue.offer(nextPos);
+                     }
 
-            for(int x : neighbor){
 
-                if (visited[x] == 0){
-                    queue.add(x);
+
+
+                     dx[j] *= -1;
+                     dy[j] *= -1;
+
                 }
             }
         }
 
-        return visited;
     }
+
+
 }
