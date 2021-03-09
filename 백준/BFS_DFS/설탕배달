@@ -1,0 +1,30 @@
+def DFS(start):
+
+    visited = [False] * n
+    stack = [start]
+
+    while stack != []:
+
+        node = stack.pop()
+        visited[node] = True
+
+
+
+
+
+
+n, m = list(map(int, input().split()))
+graph = {}
+
+for _ in range(m):
+
+    a, b = list(map(int, input().split()))
+
+    if a in graph.keys():
+
+        graph[a] = graph[a].append(b)
+
+    else:
+        graph[a] = [b]
+
+print(graph)

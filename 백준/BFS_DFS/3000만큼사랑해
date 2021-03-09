@@ -1,0 +1,31 @@
+from collections import deque
+
+r, c, k = list(map(int, input().split()))
+
+visited = [ [0] * c for _ in range(r)]
+cnt = 0
+
+que = deque()
+que.append((0,0))
+
+dx = [0,0,1,-1]
+dy = [1,-1,0,0]
+
+while que:
+
+    node = que.popleft()
+    x , y = node
+
+    for i in range(4):
+        xx = x + dx[i]
+        yy = y + dy[i]
+
+        if 0 <= xx < r and 0 <= yy < c and visited[xx][yy] < k :
+            que.append((xx,yy))
+            visited[xx][yy] += 1
+
+            if visited[xx][yy] == k :
+                cnt += 1
+
+
+print( 1 if cnt == r * c else 0)

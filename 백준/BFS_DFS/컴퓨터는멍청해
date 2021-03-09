@@ -1,0 +1,29 @@
+
+def solution():
+
+    dp = [0]*N
+    dp[0] = arr[0]
+    dp[1] = dp[0] + arr[1]
+
+    for i in range(2,N):
+
+        prev = i - 1
+        prev_total = 0
+
+        while dp[prev] == dp[prev-1]:
+
+            prev_total += arr[prev]
+            prev -= 1
+
+        dp[i] = max(dp[i-1] + prev_total + arr[i], dp[i-1], arr[i])
+
+
+    return dp
+
+
+
+if __name__ == '__main__':
+    N = int(input())
+    arr = list(map(int, input().split()))
+    print(max(solution()))
+
