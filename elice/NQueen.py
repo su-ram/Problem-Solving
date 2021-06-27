@@ -1,35 +1,38 @@
-import sys
-sys.setrecursionlimit(100000)
 
-def nQueen(position, n) :
+def nQueen(q,n):
+
     global cnt
-    if len(position) == n:
 
+    if len(q) == n :
         cnt += 1
         return 0
 
-    candidate = list(range(n))
+    candidate = []
+    x1 = len(q)
 
-    for i in range(len(position)):
+    for i in range(n):
 
-        if position[i] in candidate:
-            candidate.remove(position[i])
+        y1 = i
 
-        distance = len(position) - i
+        if i in q :
+            continue
 
-        if position[i] + distance in candidate:
-            candidate.remove(position[i]+distance)
+        promising = True
+        #기울기의 절댓값이 1
+        for x2, y2 in enumerate(q):
 
-        if position[i] - distance in candidate:
-            candidate.remove(position[i] - distance)
+            # 기존 퀸의 좌표 : x, y
+            if abs((y2-y1)/(x2-x1)) == 1 :
+                promising = False
+                break
 
-    if len(candidate) != 0:
-        for c in candidate:
-            position.append(c)
-            nQueen(position,n)
+        if not promising :
+            continue
 
-    else:
-        return cnt
+        candidate.append(i)
+
+    for c in candidate:
+        nQueen(q + [c], n)
 
 
 n = int(input())
@@ -38,3 +41,4 @@ for i in range(n):
     nQueen([i], n)
 
 print(cnt)
+
