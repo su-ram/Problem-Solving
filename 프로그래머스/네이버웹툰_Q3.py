@@ -10,21 +10,21 @@ cnt = 0
 
 
 def DFS(max, arr , cnt,ordered):
+    print(max, arr, cnt, ordered)
+    if ordered == limit:
+        print("answer is ", cnt)
 
-    if max == 0 or ordered == len(arr):
         return
 
     if max == arr.index(max)+1:
-
         DFS(max-1, arr, cnt,ordered+1)
         return
 
     for i in range(1, k+1):
 
         index = arr.index(max)
-        print(max, arr, ordered, index, i,cnt)
+
         if index+i < limit - ordered:
-            print("End")
 
             new_arr = deepcopy(arr)
             new_arr[index], new_arr[index + i] = new_arr[index + i], new_arr[index]
