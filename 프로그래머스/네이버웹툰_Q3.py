@@ -1,19 +1,21 @@
 from copy import  deepcopy
-arr = [4,5,2,3,1]
-k = 2
+import math
+
+arr = [5,4,3,2,1]
+k = 4
 limit = len(arr)
 pos = [-1] * (len(arr)+1)
 for i in range(len(arr)):
     pos[arr[i]] = i
 
 cnt = 0
-
+answer = math.inf
 
 def DFS(max, arr , cnt,ordered):
-    print(max, arr, cnt, ordered)
-    if ordered == limit:
-        print("answer is ", cnt)
 
+    if ordered == limit:
+        global answer
+        answer = min(answer, cnt)
         return
 
     if max == arr.index(max)+1:
@@ -34,7 +36,7 @@ def DFS(max, arr , cnt,ordered):
 
 
 DFS(max(arr), arr, 0, 0)
-print(cnt)
+print(answer)
 
 
 
