@@ -27,12 +27,9 @@ def DFS(max, arr , cnt,ordered):
         index = arr.index(max)
 
         if index+i < limit - ordered:
-
             new_arr = deepcopy(arr)
             new_arr[index], new_arr[index + i] = new_arr[index + i], new_arr[index]
             DFS(max, new_arr, cnt + 1, ordered)
-
-
 
 
 DFS(max(arr), arr, 0, 0)

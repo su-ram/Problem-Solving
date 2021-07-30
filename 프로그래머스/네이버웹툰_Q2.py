@@ -19,4 +19,5 @@ while que:
 
         if 0 <= nx < row and 0 <= ny < col :
             que.append((nx,ny,path[x][y]))
+
 print(path[row-1][col-1])

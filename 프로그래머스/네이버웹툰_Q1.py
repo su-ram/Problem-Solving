@@ -1,7 +1,5 @@
 lottery = [[1,0],[35,0],[1,0],[100,1],[35,1],[100,1],[35,0],[1,1],[1,1]]
 
-
-
 def solution(lottery):
     record = {}
     for user in lottery:

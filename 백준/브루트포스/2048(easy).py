@@ -1,81 +1,84 @@
 N = int(input())
 
-board = [list(map(int, input().split())) for _ in range(N)]
-origin = board.copy()
+origin = [list(map(int, input().split())) for _ in range(N)]
 direction = ['U','D','L','R']
-from itertools import product
-orders = product(direction, repeat=5)
+from copy import deepcopy
 
-def swipe(order):
-    print(order)
-    if order in ['L', 'R']:
+import math
+max_num = -math.inf
 
+def swipe(order, board):
+
+    if order == 'L':
         for i in range(N):
-            curr = -1
+            new_row = cal_row(board[i])
+            board[i] = new_row
 
-            for j in range(N):
-                if not board[i][j]:
-                    continue
-                if curr == -1:
-                    curr = j
-                elif board[i][curr] == board[i][j]:
-                    board[i][curr] *= 2
-                    curr = -1
-                    board[i][j] = 0
-                elif board[i][curr] != board[i][j]:
-                    curr = j
 
-            while board[i].count(0):
-                board[i].remove(0)
+    elif order == 'R':
+        for i in range(N):
+            row = []
+            for j in range(N-1, -1, -1):
+                row.append(board[i][j])
+            new_row = cal_row(row)
+            board[i] = new_row[::-1]
 
-            if order == 'L':
-                while N - len(board[i]):
-                    board[i].append(0)
-            else:
-                while N - len(board[i]):
-                    board[i].insert(0,0)
-            print(board[i])
 
-    else:
+    elif order == 'U':
+
         for i in range(N):
             row = []
             for j in range(N):
                 row.append(board[j][i])
-            curr = -1
+            new_row = cal_row(row)
             for j in range(N):
-                if not row[j]:
-                    continue
-                if curr == -1:
-                    curr = j
-                elif row[curr] == row[j]:
-                    row[curr] *= 2
-                    curr = -1
-                    row[j] = 0
-                elif row[curr] != row[j]:
-                    curr = j
+                board[j][i] = new_row[j]
 
-            while row.count(0):
-                row.remove(0)
+    elif order == 'D':
 
-            if order == 'U':
-                while N - len(row):
-                    row.append(0)
-            else:
-                while N - len(row):
-                    row.insert(0,0)
-
+        for i in range(N):
+            row = []
+            for j in range(N-1, -1, -1):
+                row.append(board[j][i])
+            new_row = cal_row(row)
+            new_row = new_row[::-1]
             for j in range(N):
-                board[j][i] = row[j]
+                board[j][i] = new_row[j]
+    return board
 
-import math,copy
-max_num = -math.inf
-for order in orders:
 
-    board = copy.deepcopy(origin)
+def cal_row(row):
+    global max_num
 
-    for o in order:
-        swipe(o)
-        for row in board:
+    while row.count(0) :
+        row.remove(0)
 
-            max_num = max(max(row), max_num)
+    for i in range(len(row)):
+        if i > 0 and row[i-1] == row[i] :
+            row[i-1] *= 2
+            row[i] =0
+
+    for _ in range(N-len(row)):
+        row.append(0)
+    max_num = max(max_num, max(row))
+    print(row)
+    return row
+
+def make_orders(arr):
+
+    if len(arr) == 5 :
+        board = deepcopy(origin)
+        print()
+        for o in arr:
+            swipe(o, board)
+
+        return
+
+    for d in direction:
+        arr.append(d)
+        make_orders(arr)
+        del arr[-1]
+
+arr =[]
+make_orders(arr)
 print(max_num)
