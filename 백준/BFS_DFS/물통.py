@@ -14,20 +14,11 @@ while que :
             if i == j :continue
             # i -> j
             next = list(node)
-            next[j] += node[i]
-            if next[j] > limit[j] :
-                next[i] -= (limit[j] - node[j])
-                next[j] = limit[j]
-            else:
-                next[i] = 0
+            water = min(node[i], limit[j]-node[j])
+            next[i] -= water
+            next[j] += water
             if not isvisited[next[0]][next[1]]:
                 isvisited[next[0]][next[1]] = True
                 que.append(next)
 
 [ print(i, end=' ') for i in sorted(list(weight))]
-
-
-
-
-
-
