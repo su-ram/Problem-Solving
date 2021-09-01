@@ -1,36 +1,40 @@
 n = int(input())
 shortcuts = [0] * (26)
 for _ in range(n):
-    shortcut = ''
+
     shorted = []
     options = input().split()
-    for option in options:
-        index = ord(option[0].lower()) - 97
-        if shortcuts[index] == 0 and shortcut == '':
-            shortcuts[index] = 1
-            shortcut = option[0]
-            shorted.append('['+option[0]+']'+option[1:])
-            continue
-        shorted.append(option)
+    shortcut = False
 
-    if shortcut == '':
+    #각 단어의 첫문자를 검사한다.
+    for op in options:
+        if shortcut :
+            shorted.append(op)
+            continue
+
+        alpha = ord(op[0].lower()) - 97
+        if shortcuts[alpha] == 0 :
+            shortcut = True
+            shortcuts[alpha] = 1
+            op = op.replace(op[0], '['+op[0]+']', 1)
+        shorted.append(op)
+
+    if not shortcut:
         shorted.clear()
-        for option in options:
-            if len(option) == 1 :
-                shorted.append(option)
+
+        for op in options:
+            if shortcut:
+                shorted.append(op)
                 continue
 
-            if shortcut == '':
-                for c in option[1:]:
-                    index = ord(c.lower()) - 97
-                    if shortcuts[index] == 0 :
-                        shortcuts[index] = 1
-                        shortcut = c
-                        index = option.index(shortcut)
-                        shorted.append(option[:index] + '[' + shortcut + ']' + option[index+1:])
-                        break
-            else : shorted.append(option)
-
-    print(' '.join(shorted) if shortcut != '' else ' '.join(options))
+            for c in op:
+                alpha = ord(c.lower()) - 97
+                if shortcuts[alpha] == 0:
+                    shortcuts[alpha] = 1
+                    shortcut = True
+                    op = op.replace(c, '[' + c + ']', 1)
+                    break
+            shorted.append(op)
 
 
+    print(' '.join(shorted))
