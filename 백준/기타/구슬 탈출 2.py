@@ -12,11 +12,9 @@ for i in range(N):
     row = list(input())
     if 'R' in row:
         j = row.index('R')
-
         beads['R'] = (i,j)
     if 'B' in row:
         j = row.index('B')
-
         beads['B'] = (i,j)
     if 'O' in row:
         j = row.index('O')
@@ -27,6 +25,7 @@ for i in range(N):
 
 visited = []
 direction =['up','down', 'left', 'right']
+
 
 def ishole(i,j):
     if (i,j) == hole:return True
@@ -52,13 +51,12 @@ def move(x,y, nd):
             ny += 1
 
     board[x][y] = '.'
-    board[nx][ny] = '*'
+    if not ishole(nx,ny):
+        board[nx][ny] = '*'
     return (nx, ny)
 
 
 def tilt(r,b,nd):
-    board[r[0]][r[1]] = '*'
-    board[b[0]][b[1]] = '*'
 
     if nd == 'up':
         if r[0] <= b[0]:
@@ -85,12 +83,18 @@ def tilt(r,b,nd):
             nr = move(r[0], r[1], nd)
 
     if nd == 'right':
-        if r[1] <= b[1]:
+        if r[1] >= b[1]:
             nr = move(r[0], r[1], nd)
             nb = move(b[0], b[1], nd)
         else:
             nb = move(b[0], b[1], nd)
             nr = move(r[0], r[1], nd)
+
+    board[nr[0]][nr[1]] = '.'
+    board[nb[0]][nb[1]] = '.'
+
+    board[r[0]][r[1]] = '*'
+    board[b[0]][b[1]] = '*'
 
     if nr == r and nb == b:
         return False
@@ -103,10 +107,15 @@ def tilt(r,b,nd):
 def BFS():
     q = deque([(beads.get('R'), beads.get('B'), 1)])
     visited.append((beads.get('R'), beads.get('B')))
+    global hole, result, board
+
     while q :
         r, b, c = q.popleft()
-        if c > 10 :
+
+        if c > 10:
             break
+        board[r[0]][r[1]] = '*'
+        board[b[0]][b[1]] = '*'
         for i in range(4):
             nd = direction[i]
             next = tilt(r,b,nd)
@@ -114,8 +123,10 @@ def BFS():
             if next is False:
                 continue
 
-            board[next[0][0]][next[0][1]] ='.'
-            board[next[1][0]][next[1][1]] ='.'
+            if hole == next[0] and hole == next[1]:
+                board[r[0]][r[1]] = '*'
+                board[b[0]][b[1]] = '*'
+                continue
             if hole == next[0]:
                 result[0] = min(result[0], c)
 
@@ -126,7 +137,8 @@ def BFS():
                 q.append((next[0], next[1], c+1))
                 visited.append((next[0], next[1]))
 
+        board[r[0]][r[1]] = '.'
+        board[b[0]][b[1]] = '.'
+
 BFS()
-print(result)
-for r in board:
-    print(r)
+print(result[0] if result[0] != 11 else -1)
