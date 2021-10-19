@@ -3,27 +3,31 @@ input = sys.stdin.readline
 S = input()
 words = []
 word = ''
-tag = S.startswith('<')
+tag = False
 for c in S:
-    if tag:
-        word += c
-    if c == '>':
-        tag = False
-        words.append(word)
-        word = ''
-        continue
-    if tag is False and c == '<':
+    if not tag and c == '<':
+
+        word = word.split()
+        while word.count('') :
+            word.remove('')
+
+        word = list(map(lambda x : x[::-1], word))
+        words.extend(' '.join(word))
+        word = c
         tag = True
-        if word != '':
-            word = word.split(' ')
-            word = list(map(lambda x : x[::-1], word))
-            words.append(' '.join(word))
-        word = '<'
-    if tag is False and c != '<':
+    elif not tag and c != '<':
         word += c
-
-word = word.split(' ')
-word = list(map(lambda x : x[::-1], word))
-words.append(' '.join(word))
-
+    elif tag and c != '<' and c != '>':
+        word += c
+    elif tag and c == '>':
+        word += c
+        words.append(word)
+        tag=False
+        word = ''
+if word:
+    word = word.split(' ')
+    while word.count(''):
+        word.remove('')
+    word = list(map(lambda x: x[::-1], word))
+    words.extend(' '.join(word))
 print(''.join(words))
